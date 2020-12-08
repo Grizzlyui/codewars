@@ -137,8 +137,33 @@ const quarterOf2 = (month) => {
     const month = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']
     let arr = birthday.split(' ');
     let first = m[month.indexOf(arr[0])];
-    let last = d[parseInt(month.indexOf(arr[1]))];
-    console.log(`Your villian name is: The ${first} ${last}.`)    
+    let digit = arr[1];
+    if (digit > 9) {
+        digit = arr[1][1];
+    }
+    let last = d[parseInt(digit)];
+    // console.log(`Your villian name is: The ${first} ${last}.`)    
   }
 
-  getVillainName('august 8')
+  
+ // "The quick brown fox jumps over the lazy dog." --> true
+ // "This is not a pangram." --> false
+  function isPangram(string){
+    let newString = string.replace(/\s+/g,'').toLowerCase()  
+    console.log(newString)  
+    const regex = /[a-z]/g; 
+    let found = newString.match(regex);
+    console.log(found)
+    let foundNum = 0;
+    found.forEach(element => foundNum++);
+    console.log(foundNum)
+    if (foundNum === 26) {
+        console.log(true);
+        return true;        
+    } else {
+        console.log(false);
+        return false;        
+    }
+  }
+
+  isPangram("The quick brown fox jumps over the lazy dog")
