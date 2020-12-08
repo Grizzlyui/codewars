@@ -108,3 +108,37 @@ function enough(cap, on, wait) {
         return 0;
     }
 }
+
+
+//Quarter of the year
+// Function that gives quarter of year month is in
+const quarterOf = (month) => {
+    if (month <= 3) {
+        return 1;
+    } else if (month <= 6) {
+        return 2;
+    } else if (month <= 9) {
+        return 3;
+    } else {
+        return 4;
+    }       
+}
+//best practise
+const quarterOf2 = (month) => {    
+    return Math.ceil(month / 3);
+  }
+
+
+//function that generates a villian name depending on your birthday
+//given may 3
+  function getVillainName(birthday){
+    const m = ["Evil","Vile","Cruel","Trashy","Despicable","Embarrassing","Disreputable","Atrocious","Twirling","Orange","Terrifying","Awkward"];
+    const d = ["Mustache","Pickle","Hood Ornament","Raisin","Recycling Bin","Potato","Tomato","House Cat","Teaspoon","Laundry Basket"];
+    const month = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']
+    let arr = birthday.split(' ');
+    let first = m[month.indexOf(arr[0])];
+    let last = d[parseInt(month.indexOf(arr[1]))];
+    console.log(`Your villian name is: The ${first} ${last}.`)    
+  }
+
+  getVillainName('august 8')
