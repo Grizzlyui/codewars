@@ -30,6 +30,7 @@ function toCamelCase(str){
   }
 
 
+// orders words in a string according to the number found in each word
 //"is2 Thi1s T4est 3a"  -->  "Thi1s is2 3a T4est"
 //in progress
 function order2(words){    
@@ -131,6 +132,7 @@ const quarterOf2 = (month) => {
 
 //function that generates a villian name depending on your birthday
 //given may 3
+// doeant work on codewars
   function getVillainName(birthday){
     const m = ["Evil","Vile","Cruel","Trashy","Despicable","Embarrassing","Disreputable","Atrocious","Twirling","Orange","Terrifying","Awkward"];
     const d = ["Mustache","Pickle","Hood Ornament","Raisin","Recycling Bin","Potato","Tomato","House Cat","Teaspoon","Laundry Basket"];
@@ -148,22 +150,110 @@ const quarterOf2 = (month) => {
   
  // "The quick brown fox jumps over the lazy dog." --> true
  // "This is not a pangram." --> false
-  function isPangram(string){
-    let newString = string.replace(/\s+/g,'').toLowerCase()  
-    console.log(newString)  
-    const regex = /[a-z]/g; 
-    let found = newString.match(regex);
-    console.log(found)
+function isPangram(string){
+    let newString = string.replace(/\s+/g,'').toLowerCase()
+    const regex = /[a-z]/g;                // <-- declares alphabet
+    let found = newString.match(regex);    // <-- matches array with alphabet 
+    let uniq = [...new Set(found)];        // <-- removes duplicates 
     let foundNum = 0;
-    found.forEach(element => foundNum++);
-    console.log(foundNum)
-    if (foundNum === 26) {
-        console.log(true);
-        return true;        
-    } else {
-        console.log(false);
-        return false;        
-    }
+    uniq.forEach(element => foundNum++);   // <-- counts unique letters
+    return (foundNum === 26 ? true : false);
+}
+//console.log(isPangram("The quick brown fox jumps over the lazy dog"));
+
+// codewars solution
+function isPangram1(string){
+    return (string.match(/([a-z])(?!.*\1)/ig) || []).length === 26;
   }
 
-  isPangram("The quick brown fox jumps over the lazy dog")
+
+
+// compare 2 strings and return matches
+function commonGround2(s1, s2) {
+    let arr1 = s1.split(' ');
+    let arr2 = s2.split(' ');
+    let found = [];
+    for (let i = 0; i < arr2.length; i++) {
+        for (let j = 0; j< arr1.length; j++) {    
+            if (arr2.indexOf(arr1[i]) > -1) {
+                found.push(arr2[i]);
+            } else {
+                return 'death';
+            }
+        }
+    }
+    return found.join(' ');
+    // return (s1.match(s2) ? true : 'death');
+}
+
+function commonGround1(s1, s2){       
+    let arr1 = s1.split(' ');
+    let arr2 = s2.split(' ');
+    let found = s2.match(arr1);    // <-- matches array with alphabet 
+    let result = [...new Set(found)]; 
+    return result;
+}
+
+function commonGround(s1, s2){  /// almost there
+    let arr1 = s1.split(' ');
+    let arr2 = s2.split(' ');
+    let result = [];
+    for (let i of arr1) {
+        if (i.indexOf(arr2[i])) {
+            result = result.concat(i);            
+        }
+    }
+    console.log(result)
+    return result.join(' ');
+}
+
+
+function commonGround3(s1, s2){
+    let arr1 = s1.split(' ');
+    let arr2 = s2.split(' ');
+    let temp = [];     
+    for(let i = 0; i < arr1.length; i++){
+        for (let j = 0; j < arr2.length; j++) {
+            if (arr1[i] == arr2[j]) {
+                temp.push(arr1[i]);
+            }
+        }
+    }
+    let result = [...new Set(temp)];        // removes the wrong 'a'
+    if (result.length === 0) {
+        return 'death' 
+    } else {
+        return result.join(' ');
+    }    
+}
+
+function commonGround(s1, s2) {
+    let arr1 = s1.split(' ');
+    let arr2 = s2.split(' ');
+    if (arr1.length < arr2.length) {
+        return (s2.indexOf(s1) >= 0 ? s1 : 'death')
+    } else if (arr1.length > arr2.length){
+        return (s1.indexOf(s2) >= 0 ? s2 : 'death')
+    } else if (arr1.length == arr2.length) {        
+        let temp = [];  
+        for(let i = 0; i < arr1.length; i++){
+            for (let j = 0; j < arr2.length; j++) {
+                if (arr1[i] == arr2[j]) {
+                    temp.push(arr1[i]);
+                }
+            }
+        }
+        console.log(temp)
+        if (temp.length === 0) {
+            return 'death' 
+        } else {
+            return temp.join(' ');
+        }    
+    } 
+}
+
+
+
+console.log(commonGround("eat chicken", "eat chicken and rice"));
+console.log(commonGround("eat a burger and drink a coke", "drink a coke"));
+console.log(commonGround("KHJLtuE w6rJrs pIt", "KHJLtuE qyv6 pIt"));
