@@ -227,6 +227,11 @@ function commonGround3(s1, s2){
     }    
 }
 
+
+//final iteration
+// How to compare 2 strings in 2 different ways
+// chopping string into array and looping through 2 arrays simultaiously
+
 function commonGround(s1, s2) {
     let arr1 = s1.split(' ');
     let arr2 = s2.split(' ');
@@ -253,7 +258,35 @@ function commonGround(s1, s2) {
 }
 
 
+// reverses each word in string that has 5 characters or more
+function spinWords(string) {
+    let arr1 = string.split(' ');
+    let result = [];
+    arr1.forEach(i => {
+        if (i.length < 5) {
+            result.push(i);
+        } else {
+            let reverse = '';
+            for (let j = i.length - 1; j >= 0; j--) {
+                reverse = reverse + i[j];
+            }
+            result.push(reverse);
+        }
+    });
+    return result.join(' ')
+}
 
-console.log(commonGround("eat chicken", "eat chicken and rice"));
-console.log(commonGround("eat a burger and drink a coke", "drink a coke"));
-console.log(commonGround("KHJLtuE w6rJrs pIt", "KHJLtuE qyv6 pIt"));
+//console.log(spinWords("Hey fellow warriors"))
+
+function checkDigit(number, index1, index2, digit) {
+    let tempNum = String(number) + String(number); 
+    console.log(tempNum)
+    let sliced = String(tempNum).slice(index1, index2);
+    console.log(sliced)
+    return (String(digit).indexOf(sliced) >= 0 ? true : false);
+};
+
+//console.log(checkDigit(1234567, 1, 0, 1))
+//console.log(checkDigit(1234567, 0, 1, 2))
+//console.log(checkDigit(6668844536485, 0, 0, 6))
+console.log(checkDigit(40160170475193, 13, 7, 8))
