@@ -286,7 +286,28 @@ function checkDigit(number, index1, index2, digit) {
     return (String(digit).indexOf(sliced) >= 0 ? true : false);
 };
 
-//console.log(checkDigit(1234567, 1, 0, 1))
-//console.log(checkDigit(1234567, 0, 1, 2))
-//console.log(checkDigit(6668844536485, 0, 0, 6))
-console.log(checkDigit(40160170475193, 13, 7, 8))
+
+//split string into every 2 intervals and if last index has 1 letter add _
+function solutiofn(str){
+    let newArr = [];
+    let splitStr = str.split('');
+    for (let i = 0; i < splitStr.length; i+) {  //infinite loop
+        console.log( 'hello')
+    }
+    //console.log(newArr);
+}
+
+function solution(str){
+    let newArr = [];
+    let splitStr = str.split([]);    
+    for (let i = 0; i < splitStr.length; i =i+2) { /// how to iterate through every second element
+        newArr.push(splitStr[i] + splitStr[i+1]);
+    }    
+    if (str.length % 2 !== 0) {
+        let lastItem = newArr.pop();
+        let lastLetter = lastItem[0]
+        newArr.push(lastLetter + "_") 
+    }
+    console.log(newArr);
+}
+
