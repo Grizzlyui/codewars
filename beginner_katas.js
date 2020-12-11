@@ -291,7 +291,7 @@ function checkDigit(number, index1, index2, digit) {
 function solutiofn(str){
     let newArr = [];
     let splitStr = str.split('');
-    for (let i = 0; i < splitStr.length; i+) {  //infinite loop
+    for (let i = 0; i < splitStr.length; i++) {  //infinite loop
         console.log( 'hello')
     }
     //console.log(newArr);
@@ -311,3 +311,54 @@ function solution(str){
     console.log(newArr);
 }
 
+
+
+///////////Find the odd int
+function findOdd(A) {
+    let odd = [];
+    A.forEach(num => {
+        if (num % 2 !== 0) {
+            odd.push(num);
+        }
+    });
+    return odd
+}
+
+
+// console.log(findOdd([20,1,-1,2,-2,3,3,5,5,1,2,4,20,4,-1,-2,5])); //5
+// console.log(findOdd([1,1,2,-2,5,2,4,4,-1,-2,5]));               //-1
+// console.log(findOdd([20,1,1,2,2,3,3,5,5,4,20,4,5]));             //5
+
+/////Evenly divisable by substrings
+function getCount(n) {    
+    let subStrCounter = 1;    
+    let evenDiv = 0;
+    for (let i = 0; i< String(n).length-1; i++) {
+        let subStr = String(n).slice(0,subStrCounter);
+        let num = parseInt(subStr)        
+        if (n % num === 0){
+            console.log('subStr2: '+subStr)
+            evenDiv = evenDiv + 1;
+        }
+        subStrCounter++
+    }
+    console.log('Even: ' +evenDiv)
+  //n is an integer.
+  //Code goes here! 
+}
+//getCount(123);
+//getCount(1230);
+//getCount(1111111111);
+
+function sumEvenNumbers(input) {
+    let evens = input.filter(num =>{
+        return num % 2 == 0;
+    });
+    let sum = 0;
+    evens.forEach(num => {
+        sum = sum + num;
+    })
+    return sum
+}
+
+console.log(sumEvenNumbers([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
